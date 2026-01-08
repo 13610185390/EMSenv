@@ -1,0 +1,22 @@
+# 储能EMS教学仿真平台 - 依赖包列表
+# Python 3.10+
+
+# Web框架
+gradio>=4.0.0
+
+# 数据可视化
+matplotlib>=3.7.0
+plotly>=5.18.0
+
+# 数据处理
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Excel支持
+openpyxl>=3.1.0
+
+# 测试
+pytest>=7.4.0
+
+# 代码质量
+pylint>=3.0.0
