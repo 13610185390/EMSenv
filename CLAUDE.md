@@ -171,7 +171,7 @@ fix(simulation): 修复SOC计算逻辑
 | 阶段0: 项目初始化 | ✅ 已完成 | v0.1.0 |
 | 阶段1: 基础架构层 | ✅ 已完成 | v0.2.0 |
 | 阶段2: 核心功能层 | ✅ 已完成 | v0.3.0 |
-| 阶段3: 展示层集成 | ⏳ 待开始 | - |
+| 阶段3: 展示层集成 | ✅ 已完成 | v0.4.0 |
 | 阶段4: 教学增强层 | ⏳ 待开始 | - |
 | 阶段5: 集成测试 | ⏳ 待开始 | - |
 
@@ -205,19 +205,36 @@ fix(simulation): 修复SOC计算逻辑
   - [x] modules/visualization.py - 可视化模块 (plot_power_curve, plot_soc_curve, 数据导出)
   - [x] modules/__init__.py - 统一导出所有模块函数
   - [x] utils/__init__.py - 导出校验函数
+- [x] **阶段3：展示层集成** - 应用整合
+  - [x] app.py - 主应用集成
+    - [x] AppState 应用状态管理类
+    - [x] 参数收集函数 (collect_bess_params_from_ui, collect_economic_params_from_ui, collect_control_params_from_ui)
+    - [x] 整合所有模块标签页 (基础参数、经济参数、控制策略、仿真计算)
+    - [x] 占位标签页 (教学引导、EMS架构、故障诊断)
+    - [x] 事件绑定与模块间数据传递
+    - [x] run_integrated_simulation 集成仿真函数
+  - [x] tests/test_simulation_core.py - 核心仿真测试脚本
 
 ### 下一步工作
 
-**阶段3：展示层集成** - 应用整合
+**阶段4：教学增强层** - 教学功能开发
 
-1. `app.py` - 主应用集成
-   - 整合所有模块标签页
-   - 配置事件绑定
-   - 实现模块间数据传递
-2. 运行测试与调试
+1. `modules/learning_center.py` - 教学引导中心
+   - 知识树导航
+   - 学习进度追踪
+   - 交互式教程
+
+2. `modules/ems_architecture.py` - EMS架构展示
+   - 系统架构图
+   - 通信协议说明
+   - 状态机展示
+
+3. `modules/fault_diagnosis.py` - 故障诊断模块
+   - 故障模拟
+   - 排查指南
+   - 案例库
 
 **后续阶段：**
-- 阶段4: 教学增强 (learning_center, ems_architecture, fault_diagnosis)
 - 阶段5: 集成测试与优化
 
 ---
@@ -232,7 +249,7 @@ fix(simulation): 修复SOC计算逻辑
 | 邮箱 | supertyyds@168.com |
 | 远程仓库 | https://github.com/13610185390/EMSenv.git |
 | 当前分支 | dev |
-| 最新标签 | v0.3.0 |
+| 最新标签 | v0.4.0 |
 
 ### 开发步骤
 

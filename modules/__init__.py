@@ -42,6 +42,8 @@ from .simulation import (
     calculate_statistics,
     calculate_annual_projection,
     plot_simulation_results,
+    format_statistics_table,
+    format_annual_table,
     create_simulation_tab,
     setup_simulation_events,
 )
@@ -93,6 +95,8 @@ __all__ = [
     'calculate_statistics',
     'calculate_annual_projection',
     'plot_simulation_results',
+    'format_statistics_table',
+    'format_annual_table',
     'create_simulation_tab',
     'setup_simulation_events',
     # Visualization
