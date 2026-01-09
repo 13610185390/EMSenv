@@ -64,9 +64,9 @@
 │   ├── control_params.py   # 控制策略 → 对应03文档 ✅
 │   ├── simulation.py       # 仿真计算 → 对应04文档 ✅
 │   ├── visualization.py    # 可视化   → 对应05文档 ✅
-│   ├── learning_center.py  # 教学引导 → 对应06文档 (待实现)
-│   ├── ems_architecture.py # EMS架构  → 对应07文档 (待实现)
-│   └── fault_diagnosis.py  # 故障诊断 → 对应08文档 (待实现)
+│   ├── learning_center.py  # 教学引导 → 对应06文档 ✅
+│   ├── ems_architecture.py # EMS架构  → 对应07文档 ✅
+│   └── fault_diagnosis.py  # 故障诊断 → 对应08文档 ✅
 │
 ├── utils/                  # 工具函数 ✅
 │   ├── __init__.py         # ✅ 导出校验函数
@@ -138,6 +138,9 @@ fix(simulation): 修复SOC计算逻辑
 - `CONTROL_TEACHING_META` - 控制策略教学元数据
 - `SIMULATION_TEACHING_META` - 仿真计算教学元数据
 - `VISUALIZATION_TEACHING_META` - 可视化教学元数据
+- `LEARNING_TEACHING_META` - 教学引导教学元数据
+- `EMS_ARCHITECTURE_TEACHING_META` - EMS架构教学元数据
+- `FAULT_DIAGNOSIS_TEACHING_META` - 故障诊断教学元数据
 
 ### 扩展预留标记
 
@@ -177,7 +180,7 @@ fix(simulation): 修复SOC计算逻辑
 | 阶段1: 基础架构层 | ✅ 已完成 | v0.2.0   |
 | 阶段2: 核心功能层 | ✅ 已完成 | v0.3.0   |
 | 阶段3: 展示层集成 | ✅ 已完成 | v0.4.0   |
-| 阶段4: 教学增强层 | ⏳ 待开始 | -        |
+| 阶段4: 教学增强层 | ✅ 已完成 | v0.5.0   |
 | 阶段5: 集成测试   | ⏳ 待开始 | -        |
 
 ### 已完成工作
@@ -219,30 +222,41 @@ fix(simulation): 修复SOC计算逻辑
     - [X] 事件绑定与模块间数据传递
     - [X] run_integrated_simulation 集成仿真函数
   - [X] tests/test_simulation_core.py - 核心仿真测试脚本
+- [X] **阶段4：教学增强层** - 教学功能开发
+  - [X] modules/learning_center.py - 教学引导模块
+    - [X] 知识树结构 (9个知识点: 储能基础、EMS功能、经济分析)
+    - [X] 术语速查 (8个常用术语: SOC, SOH, DOD, BMS, PCS, EMS等)
+    - [X] 知识点搜索和术语搜索功能
+    - [X] 参数帮助文本
+  - [X] modules/ems_architecture.py - EMS架构模块
+    - [X] 系统拓扑图 (8个组件: 电网、PCS、电池、BMS、EMS、电表、负荷、云平台)
+    - [X] 状态机演示 (5个状态, 9个状态转换)
+    - [X] Modbus寄存器表 (13个寄存器)
+    - [X] 数据流展示
+  - [X] modules/fault_diagnosis.py - 故障诊断模块
+    - [X] 故障类型定义 (4种故障: SOC跳变、通信中断、功率受限、过温保护)
+    - [X] 分步骤诊断指南
+    - [X] 故障案例库 (3个案例)
+    - [X] 交互式故障注入和清除
+  - [X] app.py - 集成教学增强模块，替换占位标签页
+  - [X] modules/__init__.py - 更新导出
 
 ### 下一步工作
 
-**阶段4：教学增强层** - 教学功能开发
+**阶段5：集成测试与优化**
 
-1. `modules/learning_center.py` - 教学引导中心
+1. 功能测试
+   - 各模块单元测试
+   - 集成测试脚本
+   - 边界条件测试
 
-   - 知识树导航
-   - 学习进度追踪
-   - 交互式教程
-2. `modules/ems_architecture.py` - EMS架构展示
+2. 性能优化
+   - 仿真引擎效率优化
+   - UI响应优化
 
-   - 系统架构图
-   - 通信协议说明
-   - 状态机展示
-3. `modules/fault_diagnosis.py` - 故障诊断模块
-
-   - 故障模拟
-   - 排查指南
-   - 案例库
-
-**后续阶段：**
-
-- 阶段5: 集成测试与优化
+3. 文档完善
+   - 用户手册
+   - API文档
 
 ---
 
@@ -256,7 +270,7 @@ fix(simulation): 修复SOC计算逻辑
 | 邮箱     | supertyyds@168.com                        |
 | 远程仓库 | https://github.com/13610185390/EMSenv.git |
 | 当前分支 | dev                                       |
-| 最新标签 | v0.4.0                                    |
+| 最新标签 | v0.5.0                                    |
 
 ### 开发步骤
 
