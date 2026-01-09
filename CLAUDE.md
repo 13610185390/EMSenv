@@ -57,20 +57,20 @@
 │   ├── simulation.py       # 仿真数据 → 对应04文档 ✅
 │   └── fault.py            # 故障数据 → 对应08文档 ✅
 │
-├── modules/                # 功能模块 ✅(目录已创建)
-│   ├── __init__.py         # ✅
-│   ├── basic_params.py     # 基础参数 → 对应01文档 (待实现)
-│   ├── economic_params.py  # 经济参数 → 对应02文档 (待实现)
-│   ├── control_params.py   # 控制策略 → 对应03文档 (待实现)
-│   ├── simulation.py       # 仿真计算 → 对应04文档 (待实现)
-│   ├── visualization.py    # 可视化   → 对应05文档 (待实现)
+├── modules/                # 功能模块 ✅
+│   ├── __init__.py         # ✅ 统一导出
+│   ├── basic_params.py     # 基础参数 → 对应01文档 ✅
+│   ├── economic_params.py  # 经济参数 → 对应02文档 ✅
+│   ├── control_params.py   # 控制策略 → 对应03文档 ✅
+│   ├── simulation.py       # 仿真计算 → 对应04文档 ✅
+│   ├── visualization.py    # 可视化   → 对应05文档 ✅
 │   ├── learning_center.py  # 教学引导 → 对应06文档 (待实现)
 │   ├── ems_architecture.py # EMS架构  → 对应07文档 (待实现)
 │   └── fault_diagnosis.py  # 故障诊断 → 对应08文档 (待实现)
 │
-├── utils/                  # 工具函数 ✅(目录已创建)
-│   ├── __init__.py         # ✅
-│   ├── validators.py       # 参数校验 (待实现)
+├── utils/                  # 工具函数 ✅
+│   ├── __init__.py         # ✅ 导出校验函数
+│   ├── validators.py       # 参数校验 ✅
 │   ├── converters.py       # 数据转换 (待实现)
 │   └── helpers.py          # 辅助函数 (待实现)
 │
@@ -170,8 +170,8 @@ fix(simulation): 修复SOC计算逻辑
 |------|------|----------|
 | 阶段0: 项目初始化 | ✅ 已完成 | v0.1.0 |
 | 阶段1: 基础架构层 | ✅ 已完成 | v0.2.0 |
-| 阶段2: 核心功能层 | ⏳ 待开始 | - |
-| 阶段3: 展示层 | ⏳ 待开始 | - |
+| 阶段2: 核心功能层 | ✅ 已完成 | v0.3.0 |
+| 阶段3: 展示层集成 | ⏳ 待开始 | - |
 | 阶段4: 教学增强层 | ⏳ 待开始 | - |
 | 阶段5: 集成测试 | ⏳ 待开始 | - |
 
@@ -196,17 +196,29 @@ fix(simulation): 修复SOC计算逻辑
   - [x] models/fault.py - 故障诊断数据类 (FaultType, FaultInstance, DiagnosisGuide, FaultCase)
   - [x] models/__init__.py - 统一导出所有模型
   - [x] config/default_params.py - 增加数据类实例创建函数
+- [x] **阶段2：核心功能层** - 功能模块开发
+  - [x] utils/validators.py - 参数校验工具 (validate_range, validate_bess_params, validate_economic_params, validate_control_params)
+  - [x] modules/basic_params.py - 基础参数模块 (参数管理 + Gradio UI + 事件绑定)
+  - [x] modules/economic_params.py - 经济参数模块 (电价曲线、经济计算、UI)
+  - [x] modules/control_params.py - 控制策略模块 (调度计划生成、峰谷套利/负荷跟踪策略)
+  - [x] modules/simulation.py - **核心仿真引擎** (run_simulation, 负荷曲线生成, SOC计算, 统计)
+  - [x] modules/visualization.py - 可视化模块 (plot_power_curve, plot_soc_curve, 数据导出)
+  - [x] modules/__init__.py - 统一导出所有模块函数
+  - [x] utils/__init__.py - 导出校验函数
 
 ### 下一步工作
 
-**阶段2：核心功能层** - 功能模块开发
+**阶段3：展示层集成** - 应用整合
 
-按顺序实现：
-1. `utils/validators.py` - 参数校验工具
-2. `modules/basic_params.py` - 基础参数模块（UI + 逻辑）
-3. `modules/economic_params.py` - 经济参数模块
-4. `modules/control_params.py` - 控制策略模块
-5. `modules/simulation.py` - **核心仿真引擎**
+1. `app.py` - 主应用集成
+   - 整合所有模块标签页
+   - 配置事件绑定
+   - 实现模块间数据传递
+2. 运行测试与调试
+
+**后续阶段：**
+- 阶段4: 教学增强 (learning_center, ems_architecture, fault_diagnosis)
+- 阶段5: 集成测试与优化
 
 ---
 
@@ -220,7 +232,7 @@ fix(simulation): 修复SOC计算逻辑
 | 邮箱 | supertyyds@168.com |
 | 远程仓库 | https://github.com/13610185390/EMSenv.git |
 | 当前分支 | dev |
-| 最新标签 | v0.2.0 |
+| 最新标签 | v0.3.0 |
 
 ### 开发步骤
 
