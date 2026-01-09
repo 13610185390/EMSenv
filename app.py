@@ -43,6 +43,21 @@ from modules.simulation import (
     plot_simulation_results,
 )
 
+from modules.learning_center import (
+    create_learning_center_tab,
+    setup_learning_center_events,
+)
+
+from modules.ems_architecture import (
+    create_ems_architecture_tab,
+    setup_ems_architecture_events,
+)
+
+from modules.fault_diagnosis import (
+    create_fault_diagnosis_tab,
+    setup_fault_diagnosis_events,
+)
+
 from models.bess import BESSParams, BatteryType
 from models.economic import (
     EconomicParams, ElectricityPriceParams,
@@ -285,50 +300,14 @@ def create_app() -> gr.Blocks:
             # ===== 仿真计算标签页 =====
             simulation_tab, simulation_components = create_simulation_tab()
 
-            # ===== 教学引导标签页（占位）=====
-            with gr.Tab("教学引导") as learning_tab:
-                gr.Markdown("### 教学引导中心")
-                gr.Markdown("*教学引导模块将在阶段4实现，敬请期待*")
+            # ===== 教学引导标签页 =====
+            learning_tab, learning_components = create_learning_center_tab()
 
-                with gr.Accordion("功能预览", open=True):
-                    gr.Markdown("""
-                    **计划功能：**
-                    - 知识树导航 - 系统化学习储能知识
-                    - 学习进度追踪 - 记录学习历程
-                    - 交互式教程 - 引导式操作学习
-                    - 概念解释气泡 - 悬停查看知识点
-                    - 案例学习 - 实际项目案例分析
-                    """)
+            # ===== EMS架构标签页 =====
+            ems_tab, ems_components = create_ems_architecture_tab()
 
-            # ===== EMS架构标签页（占位）=====
-            with gr.Tab("EMS架构") as ems_tab:
-                gr.Markdown("### EMS系统架构")
-                gr.Markdown("*EMS架构展示模块将在阶段4实现，敬请期待*")
-
-                with gr.Accordion("功能预览", open=True):
-                    gr.Markdown("""
-                    **计划功能：**
-                    - 系统架构图 - 可视化EMS组成结构
-                    - 通信协议说明 - Modbus/CAN/IEC61850
-                    - 状态机展示 - 储能系统运行状态
-                    - 数据流图 - 信号流转过程
-                    - 接口文档 - API与协议说明
-                    """)
-
-            # ===== 故障诊断标签页（占位）=====
-            with gr.Tab("故障诊断") as fault_tab:
-                gr.Markdown("### 故障诊断训练")
-                gr.Markdown("*故障诊断模块将在阶段4实现，敬请期待*")
-
-                with gr.Accordion("功能预览", open=True):
-                    gr.Markdown("""
-                    **计划功能：**
-                    - 故障模拟 - 模拟常见故障场景
-                    - 排查指南 - 交互式故障排查
-                    - 案例库 - 历史故障案例学习
-                    - 诊断练习 - 故障诊断能力训练
-                    - 维护建议 - 预防性维护指导
-                    """)
+            # ===== 故障诊断标签页 =====
+            fault_tab, fault_components = create_fault_diagnosis_tab()
 
         # ===== 设置事件绑定 =====
 
@@ -553,6 +532,15 @@ def create_app() -> gr.Blocks:
             inputs=all_inputs,
             outputs=simulation_outputs
         )
+
+        # 教学引导事件
+        setup_learning_center_events(learning_components)
+
+        # EMS架构事件
+        setup_ems_architecture_events(ems_components)
+
+        # 故障诊断事件
+        setup_fault_diagnosis_events(fault_components)
 
         # 底部信息
         gr.Markdown("---")
