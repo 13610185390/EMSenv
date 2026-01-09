@@ -49,13 +49,13 @@
 │   ├── constants.py        # 常量定义 ✅
 │   └── settings.py         # 应用设置 ✅
 │
-├── models/                 # 数据模型 ✅(目录已创建)
-│   ├── __init__.py         # ✅
-│   ├── bess.py             # BESS参数 → 对应01文档 (待实现)
-│   ├── economic.py         # 经济参数 → 对应02文档 (待实现)
-│   ├── control.py          # 控制参数 → 对应03文档 (待实现)
-│   ├── simulation.py       # 仿真数据 → 对应04文档 (待实现)
-│   └── fault.py            # 故障数据 → 对应08文档 (待实现)
+├── models/                 # 数据模型 ✅
+│   ├── __init__.py         # ✅ 导出所有模型
+│   ├── bess.py             # BESS参数 → 对应01文档 ✅
+│   ├── economic.py         # 经济参数 → 对应02文档 ✅
+│   ├── control.py          # 控制参数 → 对应03文档 ✅
+│   ├── simulation.py       # 仿真数据 → 对应04文档 ✅
+│   └── fault.py            # 故障数据 → 对应08文档 ✅
 │
 ├── modules/                # 功能模块 ✅(目录已创建)
 │   ├── __init__.py         # ✅
@@ -169,7 +169,7 @@ fix(simulation): 修复SOC计算逻辑
 | 阶段 | 状态 | 版本标签 |
 |------|------|----------|
 | 阶段0: 项目初始化 | ✅ 已完成 | v0.1.0 |
-| 阶段1: 基础架构层 | ⏳ 待开始 | - |
+| 阶段1: 基础架构层 | ✅ 已完成 | v0.2.0 |
 | 阶段2: 核心功能层 | ⏳ 待开始 | - |
 | 阶段3: 展示层 | ⏳ 待开始 | - |
 | 阶段4: 教学增强层 | ⏳ 待开始 | - |
@@ -188,17 +188,25 @@ fix(simulation): 修复SOC计算逻辑
   - [x] .gitignore
   - [x] app.py 主入口占位
   - [x] Git 初始化 + main/dev 分支 + v0.1.0 标签
+- [x] **阶段1：基础架构层** - 数据模型
+  - [x] models/bess.py - BESS参数数据类 (BESSParams, BatteryType, ParamTeachingMeta, ParamConstraint)
+  - [x] models/economic.py - 经济参数数据类 (EconomicParams, ElectricityPriceParams, CostParams, FinancialParams)
+  - [x] models/control.py - 控制策略数据类 (ControlParams, DispatchMode, ProtectionParams, SchedulePoint)
+  - [x] models/simulation.py - 仿真数据类 (SimulationConfig, BESSState, TimeStepResult, SimulationResult)
+  - [x] models/fault.py - 故障诊断数据类 (FaultType, FaultInstance, DiagnosisGuide, FaultCase)
+  - [x] models/__init__.py - 统一导出所有模型
+  - [x] config/default_params.py - 增加数据类实例创建函数
 
 ### 下一步工作
 
-**阶段1：基础架构层** - 数据模型开发
+**阶段2：核心功能层** - 功能模块开发
 
 按顺序实现：
-1. `models/bess.py` - BESS参数数据类
-2. `models/economic.py` - 经济参数数据类
-3. `models/control.py` - 控制策略数据类
-4. `models/simulation.py` - 仿真相关数据类
-5. `models/fault.py` - 故障相关数据类
+1. `utils/validators.py` - 参数校验工具
+2. `modules/basic_params.py` - 基础参数模块（UI + 逻辑）
+3. `modules/economic_params.py` - 经济参数模块
+4. `modules/control_params.py` - 控制策略模块
+5. `modules/simulation.py` - **核心仿真引擎**
 
 ---
 
@@ -212,7 +220,7 @@ fix(simulation): 修复SOC计算逻辑
 | 邮箱 | supertyyds@168.com |
 | 远程仓库 | https://github.com/13610185390/EMSenv.git |
 | 当前分支 | dev |
-| 最新标签 | v0.1.0 |
+| 最新标签 | v0.2.0 |
 
 ### 开发步骤
 

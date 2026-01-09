@@ -121,3 +121,125 @@ def get_default_control_params() -> dict:
 def get_default_simulation_config() -> dict:
     """获取仿真默认配置副本"""
     return DEFAULT_SIMULATION_CONFIG.copy()
+
+
+# =============================================================================
+# 数据类实例创建函数
+# =============================================================================
+def create_default_bess_params():
+    """创建默认BESS参数数据类实例
+
+    Returns:
+        BESSParams: BESS参数数据类实例
+    """
+    from models.bess import BESSParams, BatteryType
+    return BESSParams(
+        name="BESS_01",
+        battery_type=BatteryType.LFP,
+        capacity=DEFAULT_BESS_PARAMS["capacity"],
+        power_rated=DEFAULT_BESS_PARAMS["power_rated"],
+        soc_init=DEFAULT_BESS_PARAMS["soc_init"],
+        soc_min=DEFAULT_BESS_PARAMS["soc_min"],
+        soc_max=DEFAULT_BESS_PARAMS["soc_max"],
+        efficiency_charge=DEFAULT_BESS_PARAMS["efficiency_charge"],
+        efficiency_discharge=DEFAULT_BESS_PARAMS["efficiency_discharge"],
+        cycle_life=DEFAULT_BESS_PARAMS["cycle_life"],
+        calendar_life=DEFAULT_BESS_PARAMS["calendar_life"],
+        degradation_rate=DEFAULT_BESS_PARAMS["degradation_rate"],
+    )
+
+
+def create_default_economic_params():
+    """创建默认经济参数数据类实例
+
+    Returns:
+        EconomicParams: 经济参数数据类实例
+    """
+    from models.economic import (
+        EconomicParams, ElectricityPriceParams,
+        CostParams, FinancialParams
+    )
+
+    price_params = ElectricityPriceParams(
+        price_valley=DEFAULT_ECONOMIC_PARAMS["price_valley"],
+        price_flat=DEFAULT_ECONOMIC_PARAMS["price_flat"],
+        price_peak=DEFAULT_ECONOMIC_PARAMS["price_peak"],
+        price_critical=DEFAULT_ECONOMIC_PARAMS["price_critical"],
+        price_feed_in=DEFAULT_ECONOMIC_PARAMS["price_feed_in"],
+    )
+
+    cost_params = CostParams(
+        cost_per_kwh=DEFAULT_ECONOMIC_PARAMS["cost_per_kwh"],
+        cost_per_kw=DEFAULT_ECONOMIC_PARAMS["cost_per_kw"],
+        cost_install_ratio=DEFAULT_ECONOMIC_PARAMS["cost_install_ratio"],
+        cost_om_ratio=DEFAULT_ECONOMIC_PARAMS["cost_om_ratio"],
+        cost_insurance_ratio=DEFAULT_ECONOMIC_PARAMS["cost_insurance_ratio"],
+    )
+
+    financial_params = FinancialParams(
+        discount_rate=DEFAULT_ECONOMIC_PARAMS["discount_rate"],
+        project_years=DEFAULT_ECONOMIC_PARAMS["project_years"],
+        residual_ratio=DEFAULT_ECONOMIC_PARAMS["residual_ratio"],
+    )
+
+    return EconomicParams(
+        price_params=price_params,
+        cost_params=cost_params,
+        financial_params=financial_params,
+    )
+
+
+def create_default_control_params():
+    """创建默认控制参数数据类实例
+
+    Returns:
+        ControlParams: 控制参数数据类实例
+    """
+    from models.control import (
+        ControlParams, DispatchMode, ChargeStrategy, DischargeStrategy,
+        PowerControlMode, ChargeDischargeStrategy, ProtectionParams, ResponseParams
+    )
+
+    strategy = ChargeDischargeStrategy(
+        charge_strategy=ChargeStrategy.VALLEY_CHARGE,
+        discharge_strategy=DischargeStrategy.PEAK_DISCHARGE,
+        power_control_mode=PowerControlMode.CONSTANT_POWER,
+    )
+
+    protection = ProtectionParams(
+        protect_soc_high=DEFAULT_CONTROL_PARAMS["protect_soc_high"],
+        protect_soc_low=DEFAULT_CONTROL_PARAMS["protect_soc_low"],
+        power_limit_factor=DEFAULT_CONTROL_PARAMS["power_limit_factor"],
+        protect_temp_high=DEFAULT_CONTROL_PARAMS["protect_temp_high"],
+        protect_temp_low=DEFAULT_CONTROL_PARAMS["protect_temp_low"],
+    )
+
+    response = ResponseParams(
+        response_time=DEFAULT_CONTROL_PARAMS["response_time"],
+        ramp_rate=DEFAULT_CONTROL_PARAMS["ramp_rate"],
+    )
+
+    return ControlParams(
+        dispatch_mode=DispatchMode.ARBITRAGE,
+        strategy=strategy,
+        protection=protection,
+        response=response,
+    )
+
+
+def create_default_simulation_config():
+    """创建默认仿真配置数据类实例
+
+    Returns:
+        SimulationConfig: 仿真配置数据类实例
+    """
+    from models.simulation import SimulationConfig, LoadProfileType
+
+    return SimulationConfig(
+        duration_hours=DEFAULT_SIMULATION_CONFIG["duration_hours"],
+        timestep_minutes=DEFAULT_SIMULATION_CONFIG["timestep_minutes"],
+        load_profile_type=LoadProfileType.INDUSTRIAL,
+        load_scale_factor=DEFAULT_SIMULATION_CONFIG["load_scale_factor"],
+        consider_degradation=DEFAULT_SIMULATION_CONFIG["consider_degradation"],
+        consider_temperature=DEFAULT_SIMULATION_CONFIG["consider_temperature"],
+    )
