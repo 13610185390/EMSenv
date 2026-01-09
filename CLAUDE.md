@@ -144,6 +144,11 @@ fix(simulation): 修复SOC计算逻辑
 - 所有预留扩展点使用 `🔲` 标记
 - 扩展字段以 `ext_` 前缀命名
 
+### 问题记录
+
+* 所有开发中遇到的问题都记录到@docs/problem.md
+* 并且解决后将已处理的问题划掉
+
 ---
 
 ## 开发顺序
@@ -166,75 +171,77 @@ fix(simulation): 修复SOC计算逻辑
 
 ### 开发进度
 
-| 阶段 | 状态 | 版本标签 |
-|------|------|----------|
-| 阶段0: 项目初始化 | ✅ 已完成 | v0.1.0 |
-| 阶段1: 基础架构层 | ✅ 已完成 | v0.2.0 |
-| 阶段2: 核心功能层 | ✅ 已完成 | v0.3.0 |
-| 阶段3: 展示层集成 | ✅ 已完成 | v0.4.0 |
-| 阶段4: 教学增强层 | ⏳ 待开始 | - |
-| 阶段5: 集成测试 | ⏳ 待开始 | - |
+| 阶段              | 状态      | 版本标签 |
+| ----------------- | --------- | -------- |
+| 阶段0: 项目初始化 | ✅ 已完成 | v0.1.0   |
+| 阶段1: 基础架构层 | ✅ 已完成 | v0.2.0   |
+| 阶段2: 核心功能层 | ✅ 已完成 | v0.3.0   |
+| 阶段3: 展示层集成 | ✅ 已完成 | v0.4.0   |
+| 阶段4: 教学增强层 | ⏳ 待开始 | -        |
+| 阶段5: 集成测试   | ⏳ 待开始 | -        |
 
 ### 已完成工作
 
-- [x] 需求设计文档
-- [x] 8个技术设计文档
-- [x] 开发规划文档
-- [x] Git 配置并推送到远程
-- [x] **阶段0：项目初始化**
-  - [x] 项目目录结构
-  - [x] requirements.txt
-  - [x] 基础配置文件 (constants.py, settings.py, default_params.py)
-  - [x] .gitignore
-  - [x] app.py 主入口占位
-  - [x] Git 初始化 + main/dev 分支 + v0.1.0 标签
-- [x] **阶段1：基础架构层** - 数据模型
-  - [x] models/bess.py - BESS参数数据类 (BESSParams, BatteryType, ParamTeachingMeta, ParamConstraint)
-  - [x] models/economic.py - 经济参数数据类 (EconomicParams, ElectricityPriceParams, CostParams, FinancialParams)
-  - [x] models/control.py - 控制策略数据类 (ControlParams, DispatchMode, ProtectionParams, SchedulePoint)
-  - [x] models/simulation.py - 仿真数据类 (SimulationConfig, BESSState, TimeStepResult, SimulationResult)
-  - [x] models/fault.py - 故障诊断数据类 (FaultType, FaultInstance, DiagnosisGuide, FaultCase)
-  - [x] models/__init__.py - 统一导出所有模型
-  - [x] config/default_params.py - 增加数据类实例创建函数
-- [x] **阶段2：核心功能层** - 功能模块开发
-  - [x] utils/validators.py - 参数校验工具 (validate_range, validate_bess_params, validate_economic_params, validate_control_params)
-  - [x] modules/basic_params.py - 基础参数模块 (参数管理 + Gradio UI + 事件绑定)
-  - [x] modules/economic_params.py - 经济参数模块 (电价曲线、经济计算、UI)
-  - [x] modules/control_params.py - 控制策略模块 (调度计划生成、峰谷套利/负荷跟踪策略)
-  - [x] modules/simulation.py - **核心仿真引擎** (run_simulation, 负荷曲线生成, SOC计算, 统计)
-  - [x] modules/visualization.py - 可视化模块 (plot_power_curve, plot_soc_curve, 数据导出)
-  - [x] modules/__init__.py - 统一导出所有模块函数
-  - [x] utils/__init__.py - 导出校验函数
-- [x] **阶段3：展示层集成** - 应用整合
-  - [x] app.py - 主应用集成
-    - [x] AppState 应用状态管理类
-    - [x] 参数收集函数 (collect_bess_params_from_ui, collect_economic_params_from_ui, collect_control_params_from_ui)
-    - [x] 整合所有模块标签页 (基础参数、经济参数、控制策略、仿真计算)
-    - [x] 占位标签页 (教学引导、EMS架构、故障诊断)
-    - [x] 事件绑定与模块间数据传递
-    - [x] run_integrated_simulation 集成仿真函数
-  - [x] tests/test_simulation_core.py - 核心仿真测试脚本
+- [X] 需求设计文档
+- [X] 8个技术设计文档
+- [X] 开发规划文档
+- [X] Git 配置并推送到远程
+- [X] **阶段0：项目初始化**
+  - [X] 项目目录结构
+  - [X] requirements.txt
+  - [X] 基础配置文件 (constants.py, settings.py, default_params.py)
+  - [X] .gitignore
+  - [X] app.py 主入口占位
+  - [X] Git 初始化 + main/dev 分支 + v0.1.0 标签
+- [X] **阶段1：基础架构层** - 数据模型
+  - [X] models/bess.py - BESS参数数据类 (BESSParams, BatteryType, ParamTeachingMeta, ParamConstraint)
+  - [X] models/economic.py - 经济参数数据类 (EconomicParams, ElectricityPriceParams, CostParams, FinancialParams)
+  - [X] models/control.py - 控制策略数据类 (ControlParams, DispatchMode, ProtectionParams, SchedulePoint)
+  - [X] models/simulation.py - 仿真数据类 (SimulationConfig, BESSState, TimeStepResult, SimulationResult)
+  - [X] models/fault.py - 故障诊断数据类 (FaultType, FaultInstance, DiagnosisGuide, FaultCase)
+  - [X] models/__init__.py - 统一导出所有模型
+  - [X] config/default_params.py - 增加数据类实例创建函数
+- [X] **阶段2：核心功能层** - 功能模块开发
+  - [X] utils/validators.py - 参数校验工具 (validate_range, validate_bess_params, validate_economic_params, validate_control_params)
+  - [X] modules/basic_params.py - 基础参数模块 (参数管理 + Gradio UI + 事件绑定)
+  - [X] modules/economic_params.py - 经济参数模块 (电价曲线、经济计算、UI)
+  - [X] modules/control_params.py - 控制策略模块 (调度计划生成、峰谷套利/负荷跟踪策略)
+  - [X] modules/simulation.py - **核心仿真引擎** (run_simulation, 负荷曲线生成, SOC计算, 统计)
+  - [X] modules/visualization.py - 可视化模块 (plot_power_curve, plot_soc_curve, 数据导出)
+  - [X] modules/__init__.py - 统一导出所有模块函数
+  - [X] utils/__init__.py - 导出校验函数
+- [X] **阶段3：展示层集成** - 应用整合
+  - [X] app.py - 主应用集成
+    - [X] AppState 应用状态管理类
+    - [X] 参数收集函数 (collect_bess_params_from_ui, collect_economic_params_from_ui, collect_control_params_from_ui)
+    - [X] 整合所有模块标签页 (基础参数、经济参数、控制策略、仿真计算)
+    - [X] 占位标签页 (教学引导、EMS架构、故障诊断)
+    - [X] 事件绑定与模块间数据传递
+    - [X] run_integrated_simulation 集成仿真函数
+  - [X] tests/test_simulation_core.py - 核心仿真测试脚本
 
 ### 下一步工作
 
 **阶段4：教学增强层** - 教学功能开发
 
 1. `modules/learning_center.py` - 教学引导中心
+
    - 知识树导航
    - 学习进度追踪
    - 交互式教程
-
 2. `modules/ems_architecture.py` - EMS架构展示
+
    - 系统架构图
    - 通信协议说明
    - 状态机展示
-
 3. `modules/fault_diagnosis.py` - 故障诊断模块
+
    - 故障模拟
    - 排查指南
    - 案例库
 
 **后续阶段：**
+
 - 阶段5: 集成测试与优化
 
 ---
@@ -243,13 +250,13 @@ fix(simulation): 修复SOC计算逻辑
 
 ### Git 信息
 
-| 配置项 | 值 |
-|--------|-----|
-| 用户名 | TYY |
-| 邮箱 | supertyyds@168.com |
+| 配置项   | 值                                        |
+| -------- | ----------------------------------------- |
+| 用户名   | TYY                                       |
+| 邮箱     | supertyyds@168.com                        |
 | 远程仓库 | https://github.com/13610185390/EMSenv.git |
-| 当前分支 | dev |
-| 最新标签 | v0.4.0 |
+| 当前分支 | dev                                       |
+| 最新标签 | v0.4.0                                    |
 
 ### 开发步骤
 
